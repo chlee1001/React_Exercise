@@ -22,7 +22,7 @@ const Counter = ({ number, color, onIncrement, onDecrement, onSetColor }) => {
   );
 };
 
-Counter.PropTypes = {
+Counter.propTypes = {
   number: PropTypes.number,
   color: PropTypes.string,
   onIncrement: PropTypes.func,
