@@ -44,9 +44,31 @@ class App extends Component {
     });
   };
 
+  handleToggle = id => {
+    // id로 배열의 인덱스를 찾는다.
+    const { todos } = this.state;
+    const index = todos.findIndex(todo => todo.id === id);
+
+    // 찾은 데이터의 done 값을 반전 시킨다.
+    const toggled = {
+      ...todos[index],
+      done: !todos[index].done
+    };
+
+    // slide를 사용하여 우리가 찾은 index 전후의 데이터들을 복사
+    // 그리고 그 사이에는 변경된 to do 객체를 넣어 준다.
+    this.setState({
+      todos: [
+        ...todos.slice(0, index),
+        toggled,
+        ...todos.slice(index + 1, todos.length)
+      ]
+    });
+  };
+
   render() {
     const { input, todos } = this.state;
-    const { handleChange, handleInsert } = this;
+    const { handleChange, handleInsert, handleToggle } = this;
     return (
       <div>
         <PageTemplate>
@@ -55,7 +77,7 @@ class App extends Component {
             onInsert={handleInsert}
             value={input}
           />
-          <TodoList todos={todos} />
+          <TodoList todos={todos} onToggle={handleToggle} />
         </PageTemplate>
       </div>
     );
