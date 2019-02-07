@@ -9,6 +9,11 @@ const cx = classNames.bind(styles);
 const Header = () => (
   <header className={cx('header')}>
     <div className={cx('header-content')}>
+      <div className={cx('left')}>
+        <Button theme="outline" to="/editor">
+          메뉴
+        </Button>
+      </div>
       <div className={cx('brand')}>
         <Link to="/">reactblog</Link>
       </div>
