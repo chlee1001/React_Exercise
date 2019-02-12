@@ -3,18 +3,12 @@ import styles from './PageTemplate.scss';
 import classNames from 'classnames/bind';
 import Header from '../Header';
 import Footer from '../Footer';
-import SideBar from '../SideBar';
-
+import SideBarContainer from '../../../container/side/SideBarContainer';
 const cx = classNames.bind(styles);
 
 const PageTemplate = ({ children }) => (
-  <div className={cx('page-template')} id="outer-container">
-    <SideBar
-      pageWrapId={'page-wrap'}
-      outerContainerId={'outer-container'}
-      currentMenu="push"
-    />
-    <Header />
+  <div className={cx('page-template')}>
+    <SideBarContainer />
     <main>{children}</main>
     <Footer />
   </div>
