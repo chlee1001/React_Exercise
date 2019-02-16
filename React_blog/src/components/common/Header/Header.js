@@ -14,7 +14,7 @@ class Header extends Component {
         <div className={cx('header-content')}>
           <div className={cx('left')}>
             <Button onToggle={onToggle} theme="outline">
-              메뉴
+              ë©ë´
             </Button>
           </div>
           <div className={cx('brand')}>
@@ -22,7 +22,7 @@ class Header extends Component {
           </div>
           <div className={cx('right')}>
             <Button theme="outline" to="/editor">
-              새 포스트
+              ì í¬ì¤í¸
             </Button>
           </div>
         </div>

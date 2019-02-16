@@ -1,0 +1,76 @@
+@import '../../../styles/utils.scss';
+
+.header {
+  background: white;
+
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+  text-align: center;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.content {
+  margin: '24px 16px';
+  padding: 24;
+  background: white;
+  min-height: calc(100vh - 15rem);
+  @include media('<wide') {
+    width: 100%;
+  }
+  @include media('<medium') {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.footer {
+  background: #495057;
+  height: 10rem;
+
+  // 내부 내용 중앙 정렬
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; // 위에서 아래로
+
+  .brand {
+    // 로고
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .admin-login {
+    // 로그인 버튼
+    margin-top: 0.5rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer; // 손가락 모양 커서
+    &:hover {
+      // 마우스 호버 시 불투명도 없애기
+      color: white;
+    }
+  }
+}
