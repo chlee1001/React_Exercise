@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon, Button, Dropdown } from 'antd';
+import { Layout, Menu, Icon, Button, Dropdown, Input } from 'antd';
 import 'antd/dist/antd.css';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Footers from '../Footer';
 
 const cx = classNames.bind(styles);
 const { Header, Sider, Content, Footer } = Layout;
+const Search = Input.Search;
 const SubMenu = Menu.SubMenu;
 
 const menu = (
@@ -28,29 +29,35 @@ class Main extends Component {
     collapsed: false
   };
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
+  onCollapse = collapsed => {
+    console.log(collapsed);
+    this.setState({ collapsed });
   };
+
+  // toggle = () => {
+  //   this.setState({
+  //     collapsed: !this.state.collapsed
+  //   });
+  // };
 
   render() {
     const { children } = this.props;
     return (
-      <Layout>
+      <Layout style={{ minHeight: '100vh' }}>
         <Sider
           style={{
             overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
+
             left: 0
           }}
-          trigger={null}
           collapsible
           collapsed={this.state.collapsed}
+          onCollapse={this.onCollapse}
         >
           <div className={cx('logo')}>
-            <Link to="/">reactblog</Link>
+            <span>
+              <Link to="/">reactblog</Link>
+            </span>
           </div>
           <Menu
             defaultSelectedKeys={['1']}
@@ -60,16 +67,22 @@ class Main extends Component {
             inlineCollapsed={this.state.collapsed}
           >
             <Menu.Item key="1">
-              <Icon type="pie-chart" />
-              <span>Option 1</span>
+              <Icon type="home" />
+              <span>
+                <Link to="/">Home</Link>
+              </span>
             </Menu.Item>
             <Menu.Item key="2">
-              <Icon type="desktop" />
-              <span>Option 2</span>
+              <Icon type="smile" />
+              <span>
+                <Link to="/about">About</Link>
+              </span>
             </Menu.Item>
             <Menu.Item key="3">
-              <Icon type="inbox" />
-              <span>Option 3</span>
+              <Icon type="tag" />
+              <span>
+                <Link to="/tag">Tag</Link>
+              </span>
             </Menu.Item>
             <SubMenu
               key="sub1"
@@ -104,11 +117,14 @@ class Main extends Component {
           </Menu>
         </Sider>
         <Layout>
-          <Header className={cx('header')}>
-            <Icon
-              className={cx('trigger')}
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
+          <Header
+            className={cx('header')}
+            style={{ position: 'fixed', zIndex: 1 }}
+          >
+            <Search
+              placeholder="input search text"
+              onSearch={value => console.log(value)}
+              className={cx('search')}
             />
             <Dropdown
               overlay={menu}
@@ -130,15 +146,5 @@ class Main extends Component {
 export default Main;
 
 /*
-          <Footer className={cx('footer')}>
-            This is an example of implementation of Ant Design with ReactPWA.
-            Help us grow further visit&nbsp;
-            <a
-              href="https://opencollective.com/react-pwa"
-              target="_blank"
-              rel="noreferrer nofollow noopener"
-            >
-              OpenCollective
-            </a>
-          </Footer>
+          
 */

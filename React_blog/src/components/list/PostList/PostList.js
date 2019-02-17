@@ -93,31 +93,32 @@ class PostList extends Component {
           useWindow={true}
         >
           <List
+            grid={{
+              gutter: 48,
+              xs: 1,
+              sm: 2,
+              md: 4,
+              lg: 4,
+              xl: 6,
+              xxl: 3
+            }}
             itemLayout="vertical"
             size="large"
             dataSource={this.state.data}
             renderItem={item => (
               <List.Item
                 key={item.id}
-                actions={[
-                  <IconText type="star-o" text="156" />,
-                  <IconText type="like-o" text="156" />,
-                  <IconText type="message" text="2" />
-                ]}
+                actions={[<IconText type="message" text="2" />]}
                 extra={
                   <img
-                    width={272}
+                    width={100}
                     alt="logo"
                     src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                   />
                 }
               >
                 <List.Item.Meta
-                  avatar={
-                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                  }
                   title={<a href="https://ant.design">{item.name.last}</a>}
-                  description={item.email}
                 />
                 <div>Content</div>
               </List.Item>

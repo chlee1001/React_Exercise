@@ -2,7 +2,6 @@
 
 .header {
   background: white;
-
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -51,6 +50,14 @@
 .trigger:hover {
   color: #1890ff;
 }
+
+.search {
+  font-size: 18px;
+  padding-left: 1rem;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
 .userIcon {
   padding-right: 1rem;
 }
