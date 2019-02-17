@@ -38,7 +38,17 @@ class Main extends Component {
     const { children } = this.props;
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+        <Sider
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0
+          }}
+          trigger={null}
+          collapsible
+          collapsed={this.state.collapsed}
+        >
           <div className={cx('logo')}>
             <Link to="/">reactblog</Link>
           </div>
@@ -100,7 +110,11 @@ class Main extends Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
-            <Dropdown overlay={menu} trigger={['click']}>
+            <Dropdown
+              overlay={menu}
+              trigger={['click']}
+              className={cx('userIcon')}
+            >
               <Icon type="user" theme="outlined" />
             </Dropdown>
           </Header>

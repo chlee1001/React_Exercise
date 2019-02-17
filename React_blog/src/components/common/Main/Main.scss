@@ -18,6 +18,14 @@
   font-size: 1.3rem;
   font-weight: 600;
 }
+
+// .sider {
+//   overflow: 'auto';
+//   height: '100vh';
+//   position: 'fixed';
+//   left: 0;
+// }
+
 .content {
   margin: '24px 16px';
   padding: 24;
@@ -42,6 +50,9 @@
 
 .trigger:hover {
   color: #1890ff;
+}
+.userIcon {
+  padding-right: 1rem;
 }
 
 .footer {
