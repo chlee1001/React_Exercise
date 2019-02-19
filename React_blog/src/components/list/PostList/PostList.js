@@ -65,7 +65,7 @@ class PostList extends Component {
     this.setState({
       loading: true
     });
-    if (data.length > 14) {
+    if (data.length > 100) {
       message.warning('Infinite List loaded all');
       this.setState({
         hasMore: false,

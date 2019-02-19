@@ -1,17 +1,34 @@
 import React from 'react';
-import styles from './Footer.scss';
-import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
-const cx = classNames.bind(styles);
+const styles = theme => ({
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    marginTop: theme.spacing.unit * 8,
+    padding: `${theme.spacing.unit * 6}px 0`
+  }
+});
 
-const Footer = () => (
-  <footer className={cx('footer')}>
-    <Link to="/" className={cx('brand')}>
-      reactblog
-    </Link>
-    <div className={cx('admin-login')}>관리자 로그인</div>
+const Footer = ({ classes }) => (
+  <footer className={classes.footer}>
+    <Typography variant="h6" align="center" gutterBottom>
+      Footer
+    </Typography>
+    <Typography
+      variant="subtitle1"
+      align="center"
+      color="textSecondary"
+      component="p"
+    >
+      Something here to give the footer a purpose!
+    </Typography>
   </footer>
 );
 
-export default Footer;
+Footer.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Footer);
