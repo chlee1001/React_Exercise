@@ -32,5 +32,35 @@ export const featuredPosts = [
     date: 'Nov 12',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.'
+  },
+  {
+    title: 'Featured post4',
+    date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.'
+  },
+  {
+    title: 'Featured post5',
+    date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.'
+  },
+  {
+    title: 'Featured post36',
+    date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.'
+  },
+  {
+    title: 'Featured post37',
+    date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.'
+  },
+  {
+    title: 'Featured post38',
+    date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.'
   }
 ];

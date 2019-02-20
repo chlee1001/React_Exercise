@@ -16,7 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import { mainListItems, secondaryListItems } from './ListItems';
+import ListItems from './ListItems';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -83,7 +83,7 @@ const styles = theme => ({
     textalign: 'center',
     color: 'black',
     fontsize: '1.3rem',
-    fontweight: '600'
+    fontweight: 600
   }
 });
 
@@ -163,9 +163,8 @@ class Header extends Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mainListItems}</List>
+          <ListItems />
           <Divider />
-          <List>{secondaryListItems}</List>
         </Drawer>
       </Fragment>
     );
