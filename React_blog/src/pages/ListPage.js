@@ -6,9 +6,7 @@ import PostList from '../components/list/PostList/';
 const ListPage = () => {
   return (
     <PageTemplate>
-      <ListWrapper>
-        <PostList />
-      </ListWrapper>
+      <PostList />
     </PageTemplate>
   );
 };
