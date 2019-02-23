@@ -133,7 +133,7 @@ class Header extends Component {
               noWrap
               className={classes.title}
             >
-              이름???
+              Home
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
