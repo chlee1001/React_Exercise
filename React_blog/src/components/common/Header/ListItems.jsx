@@ -47,13 +47,7 @@ class ListItems extends React.Component {
     const { classes } = this.props;
 
     return (
-      <List
-        component="nav"
-        subheader={
-          <ListSubheader component="div">Nested List Items</ListSubheader>
-        }
-        className={classes.root}
-      >
+      <List component="nav" className={classes.root}>
         <ListItem button component={Link} to="/">
           <ListItemIcon>
             <HomeIcon />
