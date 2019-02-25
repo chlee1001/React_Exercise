@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRequest } from './helpers';
+import { useRequest } from '../lib/helpers';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -82,7 +82,6 @@ const Post = () => {
   if (!response) return null;
 
   const articles = response.data.articles;
-  console.log(articles);
 
   return (
     <Grid container spacing={40} className={styles.cardGrid}>
