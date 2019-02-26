@@ -6,9 +6,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
-import InfiniteScroll from 'react-infinite-scroller';
+//import InfiniteScroll from 'react-infinite-scroller';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import InfiniteScroll from 'react-simple-infinite-scroll';
 
 const styles = theme => ({
   card: {
@@ -60,6 +62,7 @@ const formatDate = date => {
     (minute < 10 ? '0' + minute : minute);
   return composedTime;
 };
+
 const Post = () => {
   const apiKey = '3754508a940e4cb19e79bd436d56af79';
   const [response, loading, error] = useRequest(
@@ -86,6 +89,7 @@ const Post = () => {
   return (
     <Grid container spacing={40} className={styles.cardGrid}>
       {articles.map((news, i) => {
+        console.log(news.urlToImage);
         return (
           <Grid item key={i} xs={12} md={6}>
             <Card className={styles.card}>
@@ -108,14 +112,18 @@ const Post = () => {
                     {formatDate(news.publishedAt)}
                   </Typography>
                   <Typography variant="subtitle1" color="primary" />
+                  <Hidden xsDown>
+                    <CardMedia
+                      className={styles.cardMedia}
+                      style={{
+                        height: 0,
+                        paddingTop: '56.25%'
+                      }}
+                      image={news.urlToImage} // eslint-disable-line max-len
+                    />
+                  </Hidden>
                 </CardContent>
               </div>
-              <Hidden xsDown>
-                <CardMedia
-                  className={styles.cardMedia}
-                  image={news.urlToImage} // eslint-disable-line max-len
-                />
-              </Hidden>
             </Card>
           </Grid>
         );
@@ -124,4 +132,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default withStyles(styles)(Post);
