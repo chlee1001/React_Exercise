@@ -6,15 +6,18 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import InputBase from '@material-ui/core/InputBase';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
+/* Icon */
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import SearchIcon from '@material-ui/icons/Search';
 
 import ListItems from './ListItems';
 const drawerWidth = 240;
@@ -26,7 +29,8 @@ const styles = theme => ({
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: '0 8px',
     ...theme.mixins.toolbar
   },
@@ -76,14 +80,57 @@ const styles = theme => ({
       width: theme.spacing.unit * 9
     }
   },
+  grow: {
+    flexGrow: 1
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25)
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing.unit,
+      width: 'auto'
+    }
+  },
+  searchIcon: {
+    width: theme.spacing.unit * 9,
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  inputRoot: {
+    color: 'inherit',
+    width: '100%'
+  },
+  inputInput: {
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: 120,
+      '&:focus': {
+        width: 200
+      }
+    }
+  },
   logo: {
-    height: '32px',
+    //height: '32px',
     // background: rgba(255, 255, 255, 0.2);
-    margin: '16px',
-    textalign: 'center',
+    marginRight: '30px',
     color: 'black',
-    fontsize: '1.3rem',
-    fontweight: 600
+    fontSize: '1.5rem',
+    fontWeight: 600
   }
 });
 
@@ -135,11 +182,19 @@ class Header extends Component {
             >
               Home
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <div className={classes.grow} />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput
+                }}
+              />
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -155,7 +210,7 @@ class Header extends Component {
           <div className={classes.toolbarIcon}>
             <div className={classes.logo}>
               <span>
-                <Link to="/">reactblog</Link>
+                <Link to="/">CH</Link>
               </span>
             </div>
             <IconButton onClick={this.handleDrawerClose}>

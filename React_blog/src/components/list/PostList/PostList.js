@@ -1,136 +1,148 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import reqwest from 'reqwest';
-import InfiniteScroll from 'react-infinite-scroller';
-
+import React from 'react';
+import { useRequest } from '../../lib/helpers';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import { featuredPosts } from './ContentItems';
+//import InfiniteScroll from 'react-infinite-scroller';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import InfiniteScroll from 'react-simple-infinite-scroll';
 
 const styles = theme => ({
   card: {
-    display: 'flex'
+    display: 'flex',
+    width: '100%',
+
+    // margin: '10px 0',
+    borderBottom: '1px solid grey'
+  },
+  cardContent: {
+    //margin: '1rem'
+    // paddingTop: 0
+    // width: '80%'
+  },
+  contentTitle: {
+    // position: 'relative',
+    marginBottom: '0.5rem'
+  },
+  contentauthor: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  contentDescription: {
+    // lineHeight: '0.5rem',
+    marginBottom: '0.5rem',
+    overflowY: 'hidden'
   },
   cardDetails: {
     flex: 1
   },
   cardMedia: {
-    width: 160
+    paddingTop: '50%'
   },
+
   progress: {
     margin: theme.spacing.unit * 2
   }
 });
-const fakeDataUrl =
-  'https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo';
 
-class PostList extends Component {
-  state = {
-    data: [],
-    loading: false,
-    hasMore: true
-  };
+const formatDate = date => {
+  var time = new Date(date);
+  var year = time.getFullYear();
+  var day = time.getDate();
+  var hour = time.getHours();
+  var minute = time.getMinutes();
+  var month = time.getMonth() + 1;
+  var composedTime =
+    day +
+    '/' +
+    month +
+    '/' +
+    year +
+    '|' +
+    hour +
+    ':' +
+    (minute < 10 ? '0' + minute : minute);
+  return composedTime;
+};
 
-  componentDidMount() {
-    this.fetchData(res => {
-      this.setState({
-        data: res.results
-      });
-    });
+const PostList = props => {
+  const apiKey = '3754508a940e4cb19e79bd436d56af79';
+  const [response, loading, error] = useRequest(
+    `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${apiKey}`
+  );
+
+  if (loading) {
+    return <div>로딩중..</div>;
   }
 
-  fetchData = callback => {
-    reqwest({
-      url: fakeDataUrl,
-      type: 'json',
-      method: 'get',
-      contentType: 'application/json',
-      success: res => {
-        callback(res);
-      }
-    });
-  };
+  if (error) {
+    return <div>에러 발생!</div>;
+  }
 
-  handleInfiniteOnLoad = () => {
-    let data = this.state.data;
-    this.setState({
-      loading: true
-    });
-    if (data.length > 100) {
-      //message.warning('Infinite List loaded all');
-      this.setState({
-        hasMore: false,
-        loading: false
-      });
-      return;
-    }
-    this.fetchData(res => {
-      data = data.concat(res.results);
-      this.setState({
-        data,
-        loading: false
-      });
-    });
-  };
+  /*
+    컴포넌트가 가장 처음 마운트 되는 시점은, Request 가 시작되지 않았으므로
+    loading 이 false 이면서 response 도 null 이기에
+    response null 체킹 필요 
+  */
+  if (!response) return null;
 
-  render() {
-    const { classes } = this.props;
+  const articles = response.data.articles;
 
-    return (
-      <InfiniteScroll
-        initialLoad={false}
-        pageStart={0}
-        loadMore={this.handleInfiniteOnLoad}
-        hasMore={!this.state.loading && this.state.hasMore}
-        useWindow={true}
-      >
-        <Grid container spacing={40} className={classes.cardGrid}>
-          {this.state.data.map(post => (
-            <Grid item key={post.name.last} xs={12} md={6}>
-              <Card className={classes.card}>
-                <div className={classes.cardDetails}>
-                  <CardContent>
-                    <Typography component="h2" variant="h5">
-                      {post.name.last}
+  return (
+    <Grid container spacing={40} className={props.classes.cardGrid}>
+      {articles.map((news, i) => {
+        return (
+          <Grid item key={i} xs={12} md={6}>
+            <Card className={props.classes.card}>
+              <div className={props.classes.cardDetails}>
+                <CardContent className={props.classes.cardContent}>
+                  <div className={props.classes.contentTitle}>
+                    <Typography variant="title">
+                      <a
+                        href={news.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {news.title}
+                      </a>
                     </Typography>
+                  </div>
+                  {/* author & formatDate 간격 수정해야함 */}
+                  <div className={props.classes.contentauthor}>
+                    <Typography>
+                      By '{news.author ? news.author : this.props.default}'
+                      {formatDate(news.publishedAt)}
+                    </Typography>
+                  </div>
+                  <div className={props.classes.contentDescription}>
                     <Typography variant="subtitle1" color="textSecondary">
-                      {post.email}
+                      {news.description}
                     </Typography>
-                    <Typography variant="subtitle1" paragraph>
-                      {post.nat}
-                    </Typography>
-                    <Typography variant="subtitle1" color="primary">
-                      Continue reading...
-                    </Typography>
-                  </CardContent>
-                </div>
-                <Hidden xsDown>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_164edaf95ee%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_164edaf95ee%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.32500076293945%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" // eslint-disable-line max-len
-                    title="Image title"
-                  />
-                </Hidden>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-        {this.state.loading && this.state.hasMore && (
-          <CircularProgress className={classes.progress} />
-        )}
-      </InfiniteScroll>
-    );
-  }
-}
+                  </div>
+
+                  <Hidden xsDown>
+                    <CardMedia
+                      className={props.classes.cardMedia}
+                      image={news.urlToImage} // eslint-disable-line max-len
+                    />
+                  </Hidden>
+                </CardContent>
+              </div>
+            </Card>
+          </Grid>
+        );
+      })}
+    </Grid>
+  );
+};
 
 PostList.propTypes = {
   classes: PropTypes.object.isRequired
