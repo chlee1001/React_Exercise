@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -47,43 +47,57 @@ class ListItems extends React.Component {
     const { classes } = this.props;
 
     return (
-      <List component="nav" className={classes.root}>
-        <ListItem button component={Link} to="/">
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button component={Link} to="/about">
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="About" />
-        </ListItem>
-        <ListItem button component={Link} to="/tag">
-          <ListItemIcon>
-            <TagIcon />
-          </ListItemIcon>
-          <ListItemText primary="Tag" />
-        </ListItem>
-        <ListItem button onClick={this.handleClick}>
-          <ListItemIcon>
-            <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Tech" />
-          {!this.state.open ? <ExpandMore /> : <ExpandLess />}
-        </ListItem>
-        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText inset primary="Starred" />
-            </ListItem>
-          </List>
-        </Collapse>
-      </List>
+      <Fragment>
+        <div class="sidebar-image">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53474/atom_profile_01.jpg" />
+        </div>
+        <a
+          data-toggle="dropdown"
+          class="sidebar-brand"
+          href="#settings-dropdown"
+        >
+          chlee1001@naver.com
+          <b class="caret" />
+        </a>
+
+        <List component="nav" className={classes.root}>
+          <ListItem button component={Link} to="/">
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button component={Link} to="/about">
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="About" />
+          </ListItem>
+          <ListItem button component={Link} to="/tag">
+            <ListItemIcon>
+              <TagIcon />
+            </ListItemIcon>
+            <ListItemText primary="Tag" />
+          </ListItem>
+          <ListItem button onClick={this.handleClick}>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Tech" />
+            {!this.state.open ? <ExpandMore /> : <ExpandLess />}
+          </ListItem>
+          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText inset primary="Starred" />
+              </ListItem>
+            </List>
+          </Collapse>
+        </List>
+      </Fragment>
     );
   }
 }
