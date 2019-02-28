@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ListPage, PostPage, EditorPage, NotFoundPage } from '../pages';
-
+import test from './common/Footer';
 export default class App extends Component {
   render() {
     return (
@@ -9,6 +9,7 @@ export default class App extends Component {
         <Fragment>
           <Switch>
             <Route exact path="/" component={ListPage} />
+            <Route path="/test" component={test} />
             <Route path="/page/:page" component={ListPage} />
             <Route path="/tag/:tag/:page?" component={ListPage} />
             <Route path="/post/:id" component={PostPage} />
