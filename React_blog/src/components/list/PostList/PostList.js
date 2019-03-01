@@ -41,11 +41,15 @@ const styles = theme => ({
     marginBottom: '0.5rem',
     overflowY: 'hidden'
   },
+  contentMore: {
+    textAlign: 'right'
+  },
   cardDetails: {
     flex: 1
   },
   cardMedia: {
-    paddingTop: '50%'
+    paddingTop: '50%',
+    marginTop: '1rem'
   },
 
   progress: {
@@ -127,7 +131,11 @@ const PostList = props => {
                       {news.description}
                     </Typography>
                   </div>
-
+                  <div className={props.classes.contentMore}>
+                    <Typography variant="subtitle1" color="primary">
+                      Continue reading...
+                    </Typography>
+                  </div>
                   <Hidden xsDown>
                     <CardMedia
                       className={props.classes.cardMedia}

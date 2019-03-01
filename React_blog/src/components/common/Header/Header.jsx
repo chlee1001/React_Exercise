@@ -208,6 +208,12 @@ class Header extends Component {
           open={this.state.open}
         >
           <div className={classes.toolbarIcon}>
+            {
+              <img
+                src="https://uploads.codesandbox.io/uploads/user/db471749-d044-49c1-8b76-46e11581f6d7/H-hE-logo.png"
+                style={{ maxWidth: '30px', margigRight: ' -60px' }}
+              />
+            }
             <div className={classes.logo}>
               <span>
                 <Link to="/">CH</Link>

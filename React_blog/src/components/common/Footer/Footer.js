@@ -15,22 +15,23 @@ import {
 const styles = theme => ({
   root: {
     display: 'flex',
-    padding: '1rem'
+    padding: '3rem'
     // backgroundColor: theme.palette.secondary.light
   },
+  container: {
+    margin: '0 auto'
+  },
   iconsWrapper: {
-    height: 120,
-    width: '100%',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: '0 auto'
   },
   icons: {
     display: 'flex'
   },
   icon: {
-    width: 32,
+    width: 40,
     height: 32,
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
     //backgroundColor: theme.palette.warning.main,
     '&:hover': {
@@ -42,21 +43,21 @@ const styles = theme => ({
 const Footer = ({ classes }) => (
   <Typography component="footer" className={classes.root}>
     <Grid container spacing={40}>
-      <Grid item xs={6} sm={4} md={2}>
+      <Grid item className={classes.container}>
         <Grid container className={classes.iconsWrapper} spacing={16}>
           <Grid item className={classes.icons}>
             <a href="https://material-ui.com/" className={classes.icon}>
-              <FontAwesomeIcon icon={faFacebookF} size="md" />
+              <FontAwesomeIcon icon={faFacebookF} size="1x" />
             </a>
             <a href="https://material-ui.com/" className={classes.icon}>
-              <FontAwesomeIcon icon={faGithub} size="md" />
+              <FontAwesomeIcon icon={faGithub} size="1x" />
             </a>
             <a href="https://twitter.com/MaterialUI" className={classes.icon}>
-              <FontAwesomeIcon icon={faInstagram} size="md" />
+              <FontAwesomeIcon icon={faInstagram} size="1x" />
             </a>
           </Grid>
-          <Grid item>© 2019 ChaeHyeon</Grid>
         </Grid>
+        <Grid item>© 2019 ChaeHyeon</Grid>
       </Grid>
     </Grid>
   </Typography>
