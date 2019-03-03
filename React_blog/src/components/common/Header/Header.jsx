@@ -35,6 +35,7 @@ const styles = theme => ({
     ...theme.mixins.toolbar
   },
   appBar: {
+    display: 'flex',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -84,6 +85,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   search: {
+    display: 'flex',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -124,10 +126,11 @@ const styles = theme => ({
       }
     }
   },
-  logo: {
-    //height: '32px',
+  logoTitle: {
+    display: 'flex',
     // background: rgba(255, 255, 255, 0.2);
-    marginRight: '30px',
+    marginRight: 'auto',
+    paddingLeft: '8px',
     color: 'black',
     fontSize: '1.5rem',
     fontWeight: 600
@@ -208,16 +211,18 @@ class Header extends Component {
           open={this.state.open}
         >
           <div className={classes.toolbarIcon}>
-            {
+            <div>
               <img
+                style={{
+                  maxWidth: '30px',
+                  marginRight: 'auto',
+                  marginTop: '6px'
+                }}
                 src="https://uploads.codesandbox.io/uploads/user/db471749-d044-49c1-8b76-46e11581f6d7/H-hE-logo.png"
-                style={{ maxWidth: '30px', margigRight: ' -60px' }}
               />
-            }
-            <div className={classes.logo}>
-              <span>
-                <Link to="/">CH</Link>
-              </span>
+            </div>
+            <div className={classes.logoTitle}>
+              <Link to="/">CH</Link>
             </div>
             <IconButton onClick={this.handleDrawerClose}>
               <ChevronLeftIcon />

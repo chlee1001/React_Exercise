@@ -14,12 +14,13 @@ import {
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    padding: '3rem'
-    // backgroundColor: theme.palette.secondary.light
+    display: 'block',
+    width: 'auto'
   },
   container: {
     margin: '0 auto'
+    // flex: 1
+    //  marginTop: 'auto'
   },
   iconsWrapper: {
     justifyContent: 'center',
@@ -37,29 +38,34 @@ const styles = theme => ({
     '&:hover': {
       //   backgroundColor: theme.palette.warning.dark
     }
+  },
+  test: {
+    marginTop: 'auto'
   }
 });
 
 const Footer = ({ classes }) => (
   <Typography component="footer" className={classes.root}>
-    <Grid container spacing={40}>
-      <Grid item className={classes.container}>
-        <Grid container className={classes.iconsWrapper} spacing={16}>
-          <Grid item className={classes.icons}>
-            <a href="https://material-ui.com/" className={classes.icon}>
-              <FontAwesomeIcon icon={faFacebookF} size="1x" />
-            </a>
-            <a href="https://material-ui.com/" className={classes.icon}>
-              <FontAwesomeIcon icon={faGithub} size="1x" />
-            </a>
-            <a href="https://twitter.com/MaterialUI" className={classes.icon}>
-              <FontAwesomeIcon icon={faInstagram} size="1x" />
-            </a>
+    <div className={classes.test}>
+      <Grid container spacing={40} style={{ marginTop: 'auto' }}>
+        <Grid item className={classes.container}>
+          <Grid container className={classes.iconsWrapper} spacing={16}>
+            <Grid item className={classes.icons}>
+              <a href="https://material-ui.com/" className={classes.icon}>
+                <FontAwesomeIcon icon={faFacebookF} size="1x" />
+              </a>
+              <a href="https://material-ui.com/" className={classes.icon}>
+                <FontAwesomeIcon icon={faGithub} size="1x" />
+              </a>
+              <a href="https://twitter.com/MaterialUI" className={classes.icon}>
+                <FontAwesomeIcon icon={faInstagram} size="1x" />
+              </a>
+            </Grid>
           </Grid>
+          <Grid item>© 2019 ChaeHyeon</Grid>
         </Grid>
-        <Grid item>© 2019 ChaeHyeon</Grid>
       </Grid>
-    </Grid>
+    </div>
   </Typography>
 );
 

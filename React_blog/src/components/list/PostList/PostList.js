@@ -12,7 +12,6 @@ import { withStyles } from '@material-ui/core/styles';
 //import InfiniteScroll from 'react-infinite-scroller';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InfiniteScroll from 'react-simple-infinite-scroll';
-
 const styles = theme => ({
   card: {
     display: 'flex',
@@ -99,7 +98,6 @@ const PostList = props => {
   if (!response) return null;
 
   const articles = response.data.articles;
-
   return (
     <Grid container spacing={40} className={props.classes.cardGrid}>
       {articles.map((news, i) => {

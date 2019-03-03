@@ -1,1 +1,1 @@
-export { default } from './Profile';
+export { Profile, ProfileModal } from './Profile';
