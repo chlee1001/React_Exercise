@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import classnames from 'classnames';
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -14,10 +14,14 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   card: {
     width: 'auto',
@@ -35,7 +39,33 @@ const useStyles = makeStyles(theme => ({
 
   avatar: {
     backgroundColor: red[500]
-  }
+  },
+  paper: {
+    position: 'absolute',
+    width: theme.spacing * 50,
+    // backgroundColor: theme.palette,
+    //boxShadow: theme.shadows[5],
+    // padding: theme.spacing * 4,
+    backgroundColor: 'white',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    padding: '1rem',
+    borderRadius: 3
+  },
+  modalTitle: {},
+  modalContent: {},
+  modalFooter: {},
+  btnMore: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px'
+  },
+  btnExit: {}
 }));
 
 export function Profile() {
@@ -80,59 +110,53 @@ export function Profile() {
   );
 }
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
-
-const styles = themes => ({
-  paper: {
-    position: 'absolute',
-    width: '100%',
-    //  backgroundColor: themes.palette.background.paper,
-    //  boxShadow: themes.shadows[5],
-    //  padding: themes.spacing.unit * 4,
-    outline: 'none'
-  }
-});
-
 export function ProfileModal() {
-  const classes = styles();
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  function handleOpenClose() {
-    setOpen(!open);
+  function handleOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
   }
 
   return (
     <div>
-      <Typography gutterBottom>
-        Click to get the full Modal experience!
-      </Typography>
-      <Button onClick={handleOpenClose}>Open Modal</Button>
+      <ListItem button onClick={handleOpen}>
+        <ListItemIcon>
+          <AccountCircle />
+        </ListItemIcon>
+        <ListItemText primary="About" />
+      </ListItem>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
-        onClose={handleOpenClose}
+        onClose={handleClose}
       >
-        <div style={getModalStyle()} className={classes.paper}>
-          <Typography variant="h6" id="modal-title">
-            Text in a modal
-          </Typography>
-          <Typography variant="subtitle1" id="simple-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+        <div className={classes.paper}>
+          <div className={classes.modalTitle}>
+            <Typography variant="h6" id="modal-title">
+              About
+            </Typography>
+          </div>
+          <div className={classes.modalContent}>
+            <Typography variant="subtitle1" id="simple-modal-description">
+              <p>이름: 이채현 </p>
+              <p>내용내용 ~~~~~~ blah blah blah</p>
+            </Typography>
+          </div>
+          <div className={classes.modalFooter}>
+            <Button className={classes.btnExit} onClick={handleClose}>
+              닫기
+            </Button>
+            <Button className={classes.btnMore} component={Link} to="/about">
+              자세히
+              {/* AboutPage에서 About을 눌렀을 때는 페이지 새로고침하게 만들기 */}
+            </Button>
+          </div>
         </div>
       </Modal>
     </div>

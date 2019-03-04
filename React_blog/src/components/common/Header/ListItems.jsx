@@ -9,12 +9,8 @@ import Collapse from '@material-ui/core/Collapse';
 /* Icon */
 import HomeIcon from '@material-ui/icons/Home';
 import TagIcon from '@material-ui/icons/Grade';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
@@ -23,7 +19,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import { ProfileMoal } from '../../list/Profile';
+import { ProfileModal } from '../../list/Profile';
 
 const styles = theme => ({
   root: {
@@ -56,12 +52,7 @@ class ListItems extends React.Component {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to="/about">
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="About" />
-        </ListItem>
+        <ListItem button component={ProfileModal} /> {/* About */}
         <ListItem button component={Link} to="/tag">
           <ListItemIcon>
             <TagIcon />
@@ -70,7 +61,7 @@ class ListItems extends React.Component {
         </ListItem>
         <ListItem button onClick={this.handleClick}>
           <ListItemIcon>
-            <BarChartIcon />
+            <LayersIcon />
           </ListItemIcon>
           <ListItemText primary="Tech" />
           {!this.state.open ? <ExpandMore /> : <ExpandLess />}
