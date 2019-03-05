@@ -7,7 +7,8 @@ import {
   NotFoundPage,
   AboutPage
 } from '../pages';
-import test from './common/Footer';
+import test from './test/components/App';
+import PostListContainer from './test/components/PostListContainer';
 export default class App extends Component {
   render() {
     return (
@@ -15,7 +16,7 @@ export default class App extends Component {
         <Fragment>
           <Switch>
             <Route exact path="/" component={ListPage} />
-            <Route path="/test" component={test} />
+            <Route path="/test" component={PostListContainer} />
             <Route path="/about" component={AboutPage} />
             <Route path="/page/:page" component={ListPage} />
             <Route path="/tag/:tag/:page?" component={ListPage} />

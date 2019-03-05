@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 //import InfiniteScroll from 'react-infinite-scroller';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import InfiniteScroll from 'react-simple-infinite-scroll';
+//import InfiniteScroll from 'react-simple-infinite-scroll';
 
 const styles = theme => ({
   card: {
