@@ -3,27 +3,24 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../redux/actions';
 import PostList from './PostList';
 import { bindActionCreators } from 'redux';
-import * as postActions from '../redux/test';
+import * as postActions from '../../../store/modules/post';
 
 class PostListContainer extends Component {
-  FETCH_POSTS = ({ isFetching, items }) => {
+  fetchP = ({ isFetching, items }) => {
     const { PostActions } = this.props;
-    PostActions.changeInput({ isFetching, items });
+    PostActions.receive({ isFetching, items });
   };
 
   render() {
-    const { fetchPosts, isLoading, posts } = this.props;
-    const { id, title, summary, date, slug } = this.props;
-
-    return <PostList id={id} title={title} summary={summary} />;
+    return <PostList isLoading={fetch.isFetching} posts={fetch.items} />;
   }
 }
 
 export default connect(
   state => ({
-    fetchPosts: state.test.get('fetchPosts'),
-    isLoading: state.test.get('isLoading'),
-    posts: state.test.get('posts')
+    fetchPosts: state.post.get('fetchPosts'),
+    isLoading: state.post.get('isLoading'),
+    posts: state.post.get('posts')
   }),
   dispatch => ({
     PostActions: bindActionCreators(postActions, dispatch)

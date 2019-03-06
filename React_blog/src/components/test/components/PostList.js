@@ -11,7 +11,6 @@ import { truncate } from '../helpers/utilities';
 export const TRUNCATION_LIMIT = 150;
 
 export default class PostList extends PureComponent {
-  test = null; // 에디터 ref
   static propTypes = {
     fetchPosts: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
@@ -53,12 +52,10 @@ export default class PostList extends PureComponent {
             <Divider />
           </List>
         ))}
-
         {/* waypoint */}
         {!isLoading && <Waypoint onEnter={fetchPosts} />}
         <br />
         <br />
-
         {/* progress */}
         <div style={{ textAlign: 'center' }}>
           <CircularProgress size={80} thickness={6} />

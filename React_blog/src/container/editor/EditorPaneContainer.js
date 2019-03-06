@@ -13,7 +13,6 @@ class EditorPaneContainer extends Component {
   render() {
     const { title, tags, markdown } = this.props;
     const { handleChangeInput } = this;
-
     return (
       <EditorPane
         title={title}
