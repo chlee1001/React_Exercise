@@ -7,7 +7,7 @@ import {
   NotFoundPage,
   AboutPage
 } from '../pages';
-import test from './test/Post';
+import test from './test/List';
 export default class App extends Component {
   render() {
     return (
