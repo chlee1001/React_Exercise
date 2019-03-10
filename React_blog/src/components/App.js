@@ -8,6 +8,7 @@ import {
   AboutPage
 } from '../pages';
 import test from './test/List';
+import velog from './testVelog/page/ListPage';
 export default class App extends Component {
   render() {
     return (
@@ -15,7 +16,7 @@ export default class App extends Component {
         <Fragment>
           <Switch>
             <Route exact path="/" component={ListPage} />
-            <Route path="/test" component={test} />
+            <Route path="/test" component={velog} />
             <Route path="/about" component={AboutPage} />
             <Route path="/page/:page" component={ListPage} />
             <Route path="/tag/:tag/:page?" component={ListPage} />

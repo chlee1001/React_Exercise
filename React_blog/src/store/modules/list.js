@@ -1,14 +1,24 @@
 import { createAction, handleActions } from 'redux-actions';
+import * as api from '../../components/lib/api';
+import { applyPenders } from 'redux-pender';
+import { updateObject } from '../../components/lib/common';
 
-import { Map } from 'immutable';
-import { pender } from 'redux-pender';
+const GET_TRENDING_POSTS = 'list/GET_TRENDING_POSTS';
+export const getTrendingPosts = createAction(
+  GET_TRENDING_POSTS,
+  api.getTrendingPosts
+);
 
-// action types
+const initialState = {
+  posts: null
+};
 
-// action creators
-
-// initial state
-const initialState = Map({});
-
-// reducer
-export default handleActions({}, initialState);
+const reducer = handleActions({}, initialState);
+export default applyPenders(reducer, [
+  {
+    type: GET_TRENDING_POSTS,
+    onSuccess: (state, action) => {
+      return updateObject(state, { posts: action.payload.data });
+    }
+  }
+]);
