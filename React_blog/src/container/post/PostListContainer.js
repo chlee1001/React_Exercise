@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getTrendingPosts } from '../../store/modules/list';
+import { getTrendingPosts, getMorePosts } from '../../store/modules/list';
 import PostList from '../../components/testVelog/list/PostList';
 
 class PostListContainer extends Component {

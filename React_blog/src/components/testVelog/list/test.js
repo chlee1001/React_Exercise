@@ -10,37 +10,47 @@ import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
+import classNames from 'classnames';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Paper from '@material-ui/core/Paper';
 const styles = theme => ({
-  card: {
-    display: 'flex',
-    width: '100%',
-
-    // margin: '10px 0',
-    borderBottom: '1px solid grey'
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+      width: 1100,
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
   },
   cardGrid: {
-    display: 'flex',
+    // display: 'flex',
+    width: '100%',
+    margin: '5px 0',
+    //borderBottom: '1px solid grey',
     flexWrap: 'wrap',
     position: 'relative',
-    marginLeft: '-.875rem',
-    marginRight: '-.875rem',
-    flexGrow: 1
+    display: 'block',
+    color: 'inherit',
+    textDecoration: 'inherit'
   },
-  cardContent: {
-    //margin: '1rem'
-    // paddingTop: 0
-    // width: '80%'
+
+  cardImg: {
+    width: '100%',
+    marginBottom: '1rem',
+    display: 'block'
   },
   contentTitle: {
-    // position: 'relative',
-    marginBottom: '0.5rem'
+    fontSize: '1.25rem',
+    fontWeight: 'bold'
   },
-  contentauthor: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+  contentAuthor: {
+    fontSize: '0.75rem',
+    fontcolor: '#868e96',
+    '& span': {
+      marginRight: '0.25rem'
+    }
   },
   contentDescription: {
     // lineHeight: '0.5rem',
@@ -50,22 +60,36 @@ const styles = theme => ({
   contentMore: {
     textAlign: 'right'
   },
-  cardDetails: {
-    flex: 1
+  root: {
+    flexGrow: 1
   },
-  cardMedia: {
-    width: '100%',
-    marginBottom: '1rem',
-    display: 'block'
-
-    // paddingTop: '50%',
-    // marginTop: '1rem'
-  },
-
-  progress: {
-    margin: theme.spacing.unit * 2
+  paper: {
+    padding: theme.spacing.unit,
+    textAlign: 'center',
+    color: theme.palette.text.secondary
   }
 });
+function FormRow(props) {
+  const { classes } = props;
+
+  return (
+    <React.Fragment>
+      <Grid item xs={4}>
+        <Paper className={classes.paper}>item1</Paper>
+      </Grid>
+      <Grid item xs={4}>
+        <Paper className={classes.paper}>item2</Paper>
+      </Grid>
+      <Grid item xs={4}>
+        <Paper className={classes.paper}>item3</Paper>
+      </Grid>
+    </React.Fragment>
+  );
+}
+
+FormRow.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 class test extends Component {
   render() {
@@ -74,45 +98,56 @@ class test extends Component {
     const { id, url_slug, title, body, user, released_at, thumbnail } = post;
     const to = `/@${user.username}/${url_slug}`;
     return (
-      <Grid to={to} container spacing={16} className={classes.cardGrid}>
-        <Grid item key={id} xs={12} md={6}>
-          <Card className={classes.card}>
-            <div className={classes.cardDetails}>
-              <CardContent className={classes.cardContent}>
-                <Hidden xsDown>
-                  {thumbnail && (
-                    <img
-                      className={classes.cardMedia}
-                      src={thumbnail}
-                      alt="thumbnail"
-                    />
-                  )}
-                </Hidden>
+      <div>
+        <Grid container spacing={24} className={classes.cardGrid}>
+          <Grid container item key={id} xs>
+            <FormRow classes={classes} />
+            <Card>
+              <div>
+                <CardContent className={classes.cardContent}>
+                  <Hidden xsDown>
+                    {thumbnail && (
+                      <img
+                        className={classes.cardImg}
+                        src={thumbnail}
+                        alt="thumbnail"
+                      />
+                    )}
+                  </Hidden>
+                  <div className={classes.contentTitle}>
+                    <Typography variant="title">{title}</Typography>
+                  </div>
+                  {/* author & formatDate 간격 수정해야함 */}
+                  <div className={classes.contentAuthor}>
+                    <Typography>
+                      <span>{user.username}</span>
+                      <span>&middot;</span>
+                      <span>{fromNow(released_at)}</span>
+                    </Typography>
+                  </div>
+                  <div className={classes.contentDescription}>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {body}
+                    </Typography>
+                  </div>
 
-                <div className={classes.contentTitle}>
-                  <Typography variant="title">{title}</Typography>
-                </div>
-                {/* author & formatDate 간격 수정해야함 */}
-                <div className={classes.contentauthor}>
-                  <Typography>
-                    By '{user.username}'{fromNow(released_at)}
-                  </Typography>
-                </div>
-                <div className={classes.contentDescription}>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {body}
-                  </Typography>
-                </div>
-                <div className={classes.contentMore}>
-                  <Typography variant="subtitle1" color="primary">
-                    Continue reading...
-                  </Typography>
-                </div>
-              </CardContent>
-            </div>
-          </Card>
+                  <div className={classes.contentMore}>
+                    <ButtonBase
+                      className={classes.cardButton}
+                      component={Link}
+                      to={to}
+                    >
+                      <Typography variant="subtitle1" color="primary">
+                        Continue reading...
+                      </Typography>
+                    </ButtonBase>
+                  </div>
+                </CardContent>
+              </div>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }
@@ -120,5 +155,4 @@ class test extends Component {
 test.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
 export default withStyles(styles)(test);
