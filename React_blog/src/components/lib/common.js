@@ -11,3 +11,8 @@ export function updateObject(state, updated) {
     ...updated
   };
 }
+
+export function resizeImage(url: string, width?: number = 256) {
+  if (url.indexOf('data:image/') !== -1) return url;
+  return `https://thumb.velog.io/resize?url=${url}&width=${width}`;
+}

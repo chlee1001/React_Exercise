@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getTrendingPosts, getMorePosts } from '../../store/modules/list';
-import PostList from '../../components/testVelog/list/PostList';
+import PostList from '../../components/testVelog/list/PostList2';
 
 class PostListContainer extends Component {
   initialize = async () => {
