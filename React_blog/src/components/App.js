@@ -7,8 +7,8 @@ import {
   NotFoundPage,
   AboutPage
 } from '../pages';
-import test from './testVelog/list/test2';
-import velog from './testVelog/page/ListPage';
+// import test from './testVelog/list/test2';
+
 export default class App extends Component {
   render() {
     return (
@@ -16,8 +16,7 @@ export default class App extends Component {
         <Fragment>
           <Switch>
             <Route exact path="/" component={ListPage} />
-            <Route path="/test" component={velog} />
-            <Route path="/test2" component={test} />
+            <Route path="/test" component={ListPage} />
             <Route path="/about" component={AboutPage} />
             <Route path="/page/:page" component={ListPage} />
             <Route path="/tag/:tag/:page?" component={ListPage} />

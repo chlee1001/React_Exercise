@@ -11,3 +11,7 @@
 [flexbox](https://wit.nts-corp.com/2018/07/27/5274/ 'flexbox')
 
 [Icon](https://material.io/tools/icons/?style=baseline/ 'Icon')
+
+### 기술\_스택
+
+React, redux, react-router, sass, react-jss........

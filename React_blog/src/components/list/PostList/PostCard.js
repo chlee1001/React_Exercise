@@ -1,11 +1,11 @@
 import React from 'react';
-import { fromNow, resizeImage } from '../../lib/common';
+import { fromNow, resizeImage } from '../../../lib/common';
 import { Link } from 'react-router-dom';
 import cx from 'classnames';
 import { shouldUpdate } from 'recompose';
 
 import 'moment/locale/ko';
-import './test2.scss';
+import './PostCard.scss';
 
 type Props = {
   id: string,
@@ -29,9 +29,7 @@ const PostCard = ({
   urlSlug,
   userThumbnail,
   oneColumn,
-  commentsCount,
-  hideUsername,
-  isPrivate
+  commentsCount
 }: Props) => {
   const formattedDate = fromNow(date);
   const link = `/@${username}/${urlSlug}`;
@@ -52,13 +50,6 @@ const PostCard = ({
       )}
       <div className="card-content">
         <div className="content-head">
-          <div className="between">
-            {!hideUsername && (
-              <Link to={`/@${username}`} className="username">
-                {username}
-              </Link>
-            )}
-          </div>
           <h3>
             <Link to={`/@${username}/${urlSlug}`}>{title}</Link>
           </h3>
@@ -76,8 +67,7 @@ const PostCard = ({
 };
 
 PostCard.defaultProps = {
-  oneColumn: false,
-  hideUsername: false
+  oneColumn: false
 };
 
 export default shouldUpdate((props: Props, nextProps: Props) => {

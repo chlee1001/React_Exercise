@@ -1,6 +1,6 @@
 import React from 'react';
 import PageTemplate from '../components/common/Main/';
-import PostList from '../components/list/PostList';
+import PostList from '../container/list/PostListContainer';
 
 const ListPage = () => {
   return (

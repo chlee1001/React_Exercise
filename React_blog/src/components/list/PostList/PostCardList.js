@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import PostCard from './test2';
+import PostCard from './PostCard';
 
 import './PostCardList.scss';
 
