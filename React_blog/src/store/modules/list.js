@@ -4,13 +4,16 @@ import { applyPenders } from 'redux-pender';
 import { updateObject } from '../../lib/common';
 
 const GET_TRENDING_POSTS = 'list/GET_TRENDING_POSTS';
-const GET_MORE_POSTS = 'post/GET_COMMENTS';
+const PREFETCH_TRENDING_POSTS = 'list/PREFETCH_TRENDING_POSTS';
 
 export const getTrendingPosts = createAction(
   GET_TRENDING_POSTS,
   api.getTrendingPosts
 );
-export const getMorePosts = createAction(GET_MORE_POSTS, api.getMorePosts);
+export const prefetchTrendingPosts = createAction(
+  PREFETCH_TRENDING_POSTS,
+  api.getTrendingPosts
+);
 
 const initialState = {
   posts: null
@@ -21,13 +24,25 @@ export default applyPenders(reducer, [
   {
     type: GET_TRENDING_POSTS,
     onSuccess: (state, action) => {
+      console.log(action);
       return updateObject(state, { posts: action.payload.data });
     }
   },
   {
-    type: GET_MORE_POSTS,
+    type: PREFETCH_TRENDING_POSTS,
     onSuccess: (state, action) => {
-      return updateObject(state, { posts: action.payload.data });
+      console.log(action);
+      const { data } = action.payload;
+      return updateObject(state, draft => {
+        const filtered = data.filter(post => !state.trendingMap[post.id]);
+        draft.trending.prefetched = filtered;
+        filtered.forEach(post => {
+          draft.trendingMap[post.id] = true;
+        });
+        if (data && data.length === 0) {
+          draft.trending.end = true;
+        }
+      });
     }
   }
 ]);
