@@ -16,3 +16,15 @@ export const getPost = ({ username, urlSlug }) =>
   client.get(`/posts/@${username}/${urlSlug}`);
 
 export const getComments = postId => client.get(`/posts/${postId}/comments`);
+
+export type ReadPostPayload = {
+  username: string,
+  urlSlug: string
+};
+
+export const readPost = ({ username, urlSlug }: ReadPostPayload) =>
+  client.get(`/posts/@${username}/${urlSlug}`);
+
+export const getPostSequences = (postId: string) => {
+  return client.get(`/posts/sequences?post_id=${postId}`);
+};

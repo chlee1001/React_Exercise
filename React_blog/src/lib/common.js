@@ -1,5 +1,6 @@
 import distanceInWords from 'date-fns/distance_in_words';
 import koLocale from 'date-fns/locale/ko';
+import { pender } from 'redux-pender';
 
 export const fromNow = d => {
   return distanceInWords(new Date(), d, { locale: koLocale, addSuffix: true });
@@ -30,4 +31,28 @@ export const getScrollBottom = () => {
   const { innerHeight } = window;
   const scrollTop = getScrollTop();
   return scrollHeight - innerHeight - scrollTop;
+};
+
+export function convertToPlainText(markdown: string): string {
+  if (!markdown) return '';
+  const replaced = markdown.replace(/\n/g, ' ').replace(/```(.*)```/g, '');
+  return removeMd(replaced)
+    .slice(0, 150)
+    .replace(/#/g, '');
+}
+
+export function applyPenders<T: Reducer>(reducer: T, penders: any[]): T {
+  const updaters = Object.assign({}, ...penders.map(pender));
+  return ((state, action) => {
+    if (updaters[action.type]) {
+      return updaters[action.type](state, action);
+    }
+    return reducer(state, action);
+  }: any);
+}
+export type ResponseAction = {
+  type: string,
+  payload: $AxiosXHR<*>,
+  error: $AxiosError<*>,
+  meta: any
 };
