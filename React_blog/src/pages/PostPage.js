@@ -1,22 +1,10 @@
-// @flow
-import React, { Fragment } from 'react';
-
+import React from 'react';
+//import PostTemplate from 'components/post/PostTemplate';
+//import ScrollToTop from 'components/base/ScrollToTop';
 import PostContainer from '../container/post/PostContainer';
-import { type Match } from 'react-router-dom';
-//import PlainTemplate from '../components/common/PlainTemplate';
 
-type Props = {
-  match: Match
+const PostPage = ({ match }) => {
+  return <PostContainer params={match.params} />;
 };
 
-const Post = ({ match }: Props) => {
-  const { username, urlSlug } = match.params;
-
-  return (
-    <Fragment>
-      <PostContainer username={username} urlSlug={decodeURI(urlSlug || '')} />
-    </Fragment>
-  );
-};
-
-export default Post;
+export default PostPage;
