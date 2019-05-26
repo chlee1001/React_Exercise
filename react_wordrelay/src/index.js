@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import WordRelay from './WordRelay';
+import WordRelayHooks from './WordRelayHooks';
 import * as serviceWorker from './serviceWorker';
+import {hot} from 'react-hot-loader/root';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Hot = hot(WordRelayHooks);
+
+ReactDOM.render(<Hot/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
