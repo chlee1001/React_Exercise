@@ -27,10 +27,29 @@ https://d2.naver.com/helloworld/4966453
 
    
 
-2. Create React App
-   `npm install -g create-react-app`
+2. Create React App<br/>`npm install -g create-react-app`<br/>`create-react-app react_test`<br/>`npm run eject`<br/>`yarn add --dev webpack`<br/>`npm install -D react-hot-loader@next`<br/>~~npm install -D webpack-dev-server~~
 
-3. VS Code 플러그인 설치
+
+
+```
+npm i --save-dev webpack webpack-cli webpack-dev-server
+
+npm i --save-dev clean-webpack-plugin html-webpack-plugin mini-css-extract-plugin uglifyjs-webpack-plugin
+
+npm i --save react react-dom
+
+npm i --save typescript @types/react @types/react-dom
+
+npm i --save-dev ts-loader css-loader file-loader url-loader
+```
+
+
+
+
+
+
+
+1. VS Code 플러그인 설치
 
    - Auto Rename Tag
    - Better Comments
