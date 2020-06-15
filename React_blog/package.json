@@ -23,7 +23,7 @@
     "immer": "2.1.4",
     "immutable": "4.0.0-rc.12",
     "include-media": "1.4.9",
-    "lodash": "4.17.11",
+    "lodash": "4.17.13",
     "marked": "0.6.0",
     "moment": "2.24.0",
     "prismjs": "1.15.0",
