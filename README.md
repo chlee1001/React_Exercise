@@ -1,6 +1,6 @@
 # React_Exercise
 
-##### 주말마다 사이버 지식 정보방에 하는 React 공부~
+##### ~~주말마다 사이버 지식 정보방에 하는~~ React 공부~
 
 http://gypark.pe.kr/wiki/Git/%EC%A0%80%EC%9E%A5%EC%86%8C%EB%B3%91%ED%95%A9
 
@@ -29,9 +29,9 @@ https://d2.naver.com/helloworld/4966453
 
 2. React 설치
 
-   - [내가 만든 것](https://github.com/chlee1001/React_QuickStarter.git)
+   - ~~[내가 만든 것](https://github.com/chlee1001/React_QuickStarter.git)~~
 
-   - [simple-react-app](https://github.com/Kornil/simple-react-app.git)
+   - ~~[simple-react-app](https://github.com/Kornil/simple-react-app.git)~~
 
      
 
@@ -53,4 +53,4 @@ https://d2.naver.com/helloworld/4966453
 
 ----
 
-사지방은 2시간마다 재부팅되는데 재부팅 될 때마다 초기화 된다. 그래서 매번 설정 해줘야함.
+~~사지방은 2시간마다 재부팅되는데 재부팅 될 때마다 초기화 된다. 그래서 매번 설정 해줘야함.~~
