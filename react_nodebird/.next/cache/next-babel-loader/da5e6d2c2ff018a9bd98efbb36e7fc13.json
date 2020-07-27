@@ -1,0 +1,1 @@
+{"ast":null,"code":"const UserProfile = () => {};","map":{"version":3,"sources":["D:/Documents/gitProject/React_Exercise/react_nodebird/components/UserProfile.js"],"names":["UserProfile"],"mappings":"AAAA,MAAMA,WAAW,GAAG,MAAK,CAExB,CAFD","sourcesContent":["const UserProfile = () =>{\r\n    \r\n}"]},"metadata":{},"sourceType":"script"}
