@@ -1,7 +1,9 @@
 import React, { useState, useCallback, useMemo } from "react";
+import PropTypes from "prop-types";
 import { Form, Input, Button } from "antd";
 import Link from "next/link";
 import styled from "styled-components";
+import useInput from "../hooks/useInput";
 
 // usecallback은 함수를 캐싱하는것,,,  useMemo는 값을 캐싱하는 것
 
@@ -14,15 +16,18 @@ const FormWrapper = styled(Form)`
 `;
 
 const LoginForm = ({ setIsLoggedIn }) => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [id, onChangeId] = useInput("");
+  const [password, onChangePassword] = useInput("");
 
-  const onChangeId = useCallback(e => {
-    setId(e.target.value);
-  }, []);
-  const onChangepassword = useCallback(e => {
-    setPassword(e.target.value);
-  }, []);
+  // const [id, setId] = useState("");
+  // const onChangeId = useCallback(e => {
+  //   setId(e.target.value);
+  // }, []);
+
+  // const [password, setPassword] = useState("");
+  // const onChangePassword = useCallback(e => {
+  //   setPassword(e.target.value);
+  // }, []);
 
   const onsubmitForm = useCallback(() => {
     // React에서 onFinish는 이미 PreventDefault가 적용되어 있다.
@@ -42,8 +47,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
         <br />
         <Input
           name="user-password"
+          type="password"
           value={password}
-          onChange={onChangepassword}
+          onChange={onChangePassword}
           required
         />
       </div>
@@ -59,6 +65,10 @@ const LoginForm = ({ setIsLoggedIn }) => {
       </ButtonWrapper>
     </FormWrapper>
   );
+};
+
+LoginForm.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
